@@ -6,10 +6,8 @@ using namespace std;
 
 class Enemy
 {
-protected:
-	Sprite m_Sprite;
-
 private:
+	Sprite m_Sprite;
 	Vector2f m_Position;
 	Vector2f m_StartPosition;
 

@@ -3,6 +3,7 @@
 #include "TextureHolder.h"
 #include "Thomas.h"
 #include "Enemy.h"
+#include "Powerup.h"
 #include "LevelManager.h"
 #include "SoundManager.h"
 #include "HUD.h"

@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Enemy.h"
+#include "Powerup.h"
 
 using namespace sf;
 using namespace std;

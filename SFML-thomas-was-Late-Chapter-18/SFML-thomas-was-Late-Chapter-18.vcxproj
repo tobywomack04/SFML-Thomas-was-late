@@ -26,6 +26,7 @@
     <ClInclude Include="code\Particle.h" />
     <ClInclude Include="code\ParticleSystem.h" />
     <ClInclude Include="code\PlayableCharacter.h" />
+    <ClInclude Include="code\Powerup.h" />
     <ClInclude Include="code\SoundManager.h" />
     <ClInclude Include="code\TextureHolder.h" />
     <ClInclude Include="code\Thomas.h" />
@@ -44,6 +45,7 @@
     <ClCompile Include="code\ParticleSystem.cpp" />
     <ClCompile Include="code\PlayableCharacter.cpp" />
     <ClCompile Include="code\PopulateEmitters.cpp" />
+    <ClCompile Include="code\Powerup.cpp" />
     <ClCompile Include="code\SoundManager.cpp" />
     <ClCompile Include="code\TextureHolder.cpp" />
     <ClCompile Include="code\Thomas.cpp" />
