@@ -1,5 +1,8 @@
 #include "Hud.h"
 
+using namespace sf;
+using namespace std;
+
 Hud::Hud()
 {
 	Vector2u resolution;

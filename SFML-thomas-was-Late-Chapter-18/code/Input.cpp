@@ -1,5 +1,8 @@
 #include "Engine.h"
 
+using namespace sf;
+using namespace std;
+
 void Engine::input()
 {
 	Event event;
@@ -17,6 +20,12 @@ void Engine::input()
 			if (Keyboard::isKeyPressed(Keyboard::Return))
 			{
 				m_Playing = true;
+			}
+
+			// Switch between Thomas and Bob
+			if (Keyboard::isKeyPressed(Keyboard::Q))
+			{
+				m_Character1 = !m_Character1;
 			}
 		}
 	}	

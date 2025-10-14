@@ -1,5 +1,8 @@
 #include "Engine.h"
 
+using namespace sf;
+using namespace std;
+
 bool Engine::detectCollisions(PlayableCharacter& character)
 {
 	bool reachedGoal = false;
@@ -81,7 +84,6 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 					character.stopLeft(block.left);
 				}
 
-
 				if (character.getFeet().intersects(block))
 				{
 					character.stopFalling(block.top);
@@ -115,9 +117,7 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 				// Character has reached the goal
 				reachedGoal = true;
 			}
-
 		}
-
 	}
 
 	// All done, return, wheteher or not a new level might be required

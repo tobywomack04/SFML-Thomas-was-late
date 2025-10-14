@@ -40,18 +40,6 @@ void Engine::update(float dtAsSeconds)
 			m_SM.playReachGoal();
 		}
 
-		/*
-		// Let bob and thomas jump on each others heads
-		if (m_Bob.getFeet().intersects(m_Thomas.getHead()))
-		{
-			m_Bob.stopFalling(m_Thomas.getHead().top);
-		}
-		else if (m_Thomas.getFeet().intersects(m_Bob.getHead()))
-		{
-			m_Thomas.stopFalling(m_Bob.getHead().top);
-		}
-		*/
-
 		// Count down the time the player has left
 		m_TimeRemaining -= dtAsSeconds;
 
@@ -59,6 +47,18 @@ void Engine::update(float dtAsSeconds)
 		if (m_TimeRemaining <= 0)
 		{
 			m_NewLevelRequired = true;
+		}
+
+		for (int i = 0; i < m_Enemies.size(); i++)
+		{
+			// Update the enemy
+			m_Enemies[i].update(dtAsSeconds);
+
+			// Has Thomas run into an enemy?
+			if (m_Thomas.getPosition().intersects(m_Enemies[i].getPosition()))
+			{
+				m_NewLevelRequired = true;
+			}
 		}
 	}// End if playing
 
@@ -85,7 +85,6 @@ void Engine::update(float dtAsSeconds)
 		}
 	}
 		
-	// Centre full screen around appropriate character
 	m_MainView.setCenter(m_Thomas.getCenter());
 
 	// Time to update the HUD?

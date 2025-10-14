@@ -1,5 +1,8 @@
 #include "Particle.h"
 
+using namespace sf;
+using namespace std;
+
 Particle::Particle(Vector2f direction)
 {
 

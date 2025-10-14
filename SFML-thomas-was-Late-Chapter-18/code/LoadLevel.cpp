@@ -1,5 +1,8 @@
 #include "Engine.h"
 
+using namespace sf;
+using namespace std;
+
 void Engine::loadLevel()
 {
 	m_Playing = false;
@@ -8,8 +11,11 @@ void Engine::loadLevel()
 	for (int i = 0; i < m_LM.getLevelSize().y; ++i)
 	{
 		delete[] m_ArrayLevel[i];
+
 	}
 	delete[] m_ArrayLevel;
+
+	m_Enemies.clear();
 
 	// Load the next 2d array with the map for the level
 	// And repopulate the vertex array as well

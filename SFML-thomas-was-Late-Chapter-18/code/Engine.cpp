@@ -1,21 +1,20 @@
 #include "Engine.h"
 
+using namespace sf;
+using namespace std;
 
-Engine::Engine()
+Engine::Engine() : m_Enemies(m_LM.getEnemies())
 {
 	// Get the screen resolution and create an SFML window and View
 	Vector2f resolution;
 	resolution.x = VideoMode::getDesktopMode().width;
 	resolution.y = VideoMode::getDesktopMode().height;
 
-	m_Window.create(VideoMode(resolution.x, resolution.y),
-		"Thomas was late",
-		Style::Fullscreen);
+	m_Window.create(VideoMode(resolution.x, resolution.y), "Thomas was late", Style::Fullscreen);
 
 	// Initialize the full screen view
 	m_MainView.setSize(resolution);
-	m_HudView.reset(
-		FloatRect(0, 0, resolution.x, resolution.y));
+	m_HudView.reset(FloatRect(0, 0, resolution.x, resolution.y));
 
 	// Inititialize the split-screen Views
 	m_LeftView.setViewport(
@@ -67,8 +66,10 @@ void Engine::run()
 	while (m_Window.isOpen())
 	{
 		Time dt = clock.restart();
+
 		// Update the total game time
 		m_GameTimeTotal += dt;
+
 		// Make a decimal fraction from the delta time
 		float dtAsSeconds = dt.asSeconds();
 

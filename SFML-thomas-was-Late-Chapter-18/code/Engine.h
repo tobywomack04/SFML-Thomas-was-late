@@ -2,12 +2,14 @@
 #include <SFML/Graphics.hpp>
 #include "TextureHolder.h"
 #include "Thomas.h"
+#include "Enemy.h"
 #include "LevelManager.h"
 #include "SoundManager.h"
 #include "HUD.h"
 #include "ParticleSystem.h"
 
 using namespace sf;
+using namespace std;
 
 class Engine
 {
@@ -15,10 +17,10 @@ private:
 	// The texture holder
 	TextureHolder th;
 
-	// Create a particle system
+	// create a particle system
 	ParticleSystem m_PS;
 
-	// Declare Thomas
+	// Thomas and his friend, Bob
 	Thomas m_Thomas;
 
 	// A class to manage all the levels
@@ -99,6 +101,9 @@ private:
 
 	// A vector of Vector2f for the fire emiiter locations
 	vector <Vector2f> m_FireEmitters;
+
+	// A vector to store the enemies
+	vector<Enemy>& m_Enemies;
 	
 public:
 	// The Engine constructor

@@ -1,5 +1,8 @@
 #include "Engine.h"
 
+using namespace sf;
+using namespace std;
+
 int main()
 {
 	// Declare an instance of Engine

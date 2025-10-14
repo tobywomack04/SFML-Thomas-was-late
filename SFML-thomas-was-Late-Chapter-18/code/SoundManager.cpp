@@ -2,6 +2,9 @@
 #include <SFML/Audio.hpp>
 
 using namespace sf;
+using namespace std;
+
+using namespace sf;
 
 SoundManager::SoundManager()
 {
@@ -41,6 +44,8 @@ SoundManager::SoundManager()
 	m_Fire1Sound.setLoop(true);
 	m_Fire2Sound.setLoop(true);
 	m_Fire3Sound.setLoop(true);
+
+	Listener::setGlobalVolume(50.f);
 }
 
 void SoundManager::playFire(Vector2f emitterLocation, Vector2f listenerLocation)

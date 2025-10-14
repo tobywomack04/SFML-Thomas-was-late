@@ -1,6 +1,9 @@
 #include "Thomas.h"
 #include "TextureHolder.h"
 
+using namespace sf;
+using namespace std;
+
 Thomas::Thomas()
 {
 	// Associate a texture with the sprite
@@ -17,6 +20,7 @@ bool Thomas::handleInput()
 
 	if (Keyboard::isKeyPressed(Keyboard::W))
 	{
+
 		// Start a jump if not already jumping
 		// but only if standing on a block (not falling)
 		if (!m_IsJumping && !m_IsFalling)
@@ -30,7 +34,6 @@ bool Thomas::handleInput()
 	{
 		m_IsJumping = false;
 		m_IsFalling = true;
-
 	}
 	if (Keyboard::isKeyPressed(Keyboard::A))
 	{

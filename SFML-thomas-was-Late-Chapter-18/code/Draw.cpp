@@ -1,5 +1,8 @@
 #include "Engine.h"
 
+using namespace sf;
+using namespace std;
+
 void Engine::draw()
 {
 	// Rub out the last frame
@@ -24,6 +27,11 @@ void Engine::draw()
 
 	// Draw thomas
 	m_Window.draw(m_Thomas.getSprite());
+
+	for (int i = 0; i < m_Enemies.size(); i++)
+	{
+		m_Window.draw(m_Enemies[i].getSprite());
+	}
 
 	// Draw the particle system
 	if (m_PS.running())

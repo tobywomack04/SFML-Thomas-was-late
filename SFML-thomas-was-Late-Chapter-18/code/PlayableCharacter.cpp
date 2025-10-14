@@ -1,5 +1,8 @@
 #include "PlayableCharacter.h"
 
+using namespace sf;
+using namespace std;
+
 void PlayableCharacter::spawn(Vector2f startPosition, float gravity)
 {
 	// Place the player at the starting point
@@ -11,12 +14,10 @@ void PlayableCharacter::spawn(Vector2f startPosition, float gravity)
 
 	// Move the sprite in to position
 	m_Sprite.setPosition(m_Position);
-
 }
 
 void PlayableCharacter::update(float elapsedTime)
 {
-
 	if (m_RightPressed)
 	{
 		m_Position.x += m_Speed * elapsedTime;
@@ -26,7 +27,6 @@ void PlayableCharacter::update(float elapsedTime)
 	{
 		m_Position.x -= m_Speed * elapsedTime;
 	}
-
 
 	// Handle Jumping
 	if (m_IsJumping)
@@ -45,7 +45,6 @@ void PlayableCharacter::update(float elapsedTime)
 			m_IsJumping = false;
 			m_IsFalling = true;
 		}
-
 	}
 
 	// Apply gravity
@@ -56,7 +55,6 @@ void PlayableCharacter::update(float elapsedTime)
 
 	// Update the rect for all body parts
 	FloatRect r = getPosition();
-
 
 	// Feet
 	m_Feet.left = r.left + 3;
@@ -84,7 +82,6 @@ void PlayableCharacter::update(float elapsedTime)
 
 	// Move the sprite into position
 	m_Sprite.setPosition(m_Position);
-
 }
 
 FloatRect PlayableCharacter::getPosition()
@@ -94,10 +91,7 @@ FloatRect PlayableCharacter::getPosition()
 
 Vector2f PlayableCharacter::getCenter()
 {
-	return Vector2f(
-		m_Position.x + m_Sprite.getGlobalBounds().width / 2,
-		m_Position.y + m_Sprite.getGlobalBounds().height / 2
-		);
+	return Vector2f(m_Position.x + m_Sprite.getGlobalBounds().width / 2, m_Position.y + m_Sprite.getGlobalBounds().height / 2);
 }
 
 FloatRect PlayableCharacter::getFeet()
@@ -125,8 +119,6 @@ Sprite PlayableCharacter::getSprite()
 	return m_Sprite;
 }
 
-
-
 void PlayableCharacter::stopFalling(float position)
 {
 	m_Position.y = position - getPosition().height;
@@ -136,7 +128,6 @@ void PlayableCharacter::stopFalling(float position)
 
 void PlayableCharacter::stopRight(float position)
 {
-	
 	m_Position.x = position - m_Sprite.getGlobalBounds().width;
 	m_Sprite.setPosition(m_Position);
 }

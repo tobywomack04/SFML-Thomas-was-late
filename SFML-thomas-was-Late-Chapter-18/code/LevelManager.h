@@ -1,6 +1,7 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
+#include "Enemy.h"
+
 using namespace sf;
 using namespace std;
 
@@ -14,6 +15,9 @@ private:
 	float m_BaseTimeLimit = 0;
 	int m_CurrentLevel = 0;
 	const int NUM_LEVELS = 4;
+
+	// A vector to store the enemies
+	vector<Enemy> m_Enemies;
 
 public:
 
@@ -30,4 +34,5 @@ public:
 
 	int getCurrentLevel();
 
+	vector<Enemy>& getEnemies();
 };
