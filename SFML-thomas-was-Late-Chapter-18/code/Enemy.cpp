@@ -5,7 +5,7 @@
 using namespace sf;
 using namespace std;
 
-Enemy::Enemy(Vector2f pos)
+Enemy::Enemy(Vector2f pos, string type)
 {
 	// Associate a texture with the sprite
 	m_Sprite = Sprite(TextureHolder::GetTexture("graphics/bob.png"));
@@ -15,25 +15,29 @@ Enemy::Enemy(Vector2f pos)
 	m_StartPosition.y = pos.y;
 	m_Position.x = pos.x;
 	m_Position.y = pos.y;
+
+    m_Type = type;
 }
 
 void Enemy::update(float dtAsSeconds) {
 
-    if (m_Position.x > m_StartPosition.x + 100) {
-        movingRight = false;
-    }
-    else if (m_Position.x < m_StartPosition.x - 100) {
-        movingRight = true;
-    }
+    if (m_Type == "Sideswipe") {
+        if (m_Position.x > m_StartPosition.x + 100) {
+            movingRight = false;
+        }
+        else if (m_Position.x < m_StartPosition.x - 100) {
+            movingRight = true;
+        }
 
-    if (movingRight) {
-        m_Position.x += speed * dtAsSeconds;
-    }
-    else {
-        m_Position.x -= speed * dtAsSeconds;
-    }
+        if (movingRight) {
+            m_Position.x += speed * dtAsSeconds;
+        }
+        else {
+            m_Position.x -= speed * dtAsSeconds;
+        }
 
-    m_Sprite.setPosition(m_Position);
+        m_Sprite.setPosition(m_Position);
+    }
 }
 
 FloatRect Enemy::getPosition()

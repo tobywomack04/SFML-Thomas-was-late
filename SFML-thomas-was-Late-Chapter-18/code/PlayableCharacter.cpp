@@ -1,4 +1,5 @@
 #include "PlayableCharacter.h"
+#include <iostream>
 
 using namespace sf;
 using namespace std;
@@ -82,6 +83,12 @@ void PlayableCharacter::update(float elapsedTime)
 
 	// Move the sprite into position
 	m_Sprite.setPosition(m_Position);
+
+	if (m_SpeedBoost) {
+		if (speedBoostClock.getElapsedTime().asSeconds() >= 2) {
+			setSpeedBoost(false);
+		}
+	}
 }
 
 FloatRect PlayableCharacter::getPosition()
@@ -143,6 +150,18 @@ void PlayableCharacter::stopJump()
 	// Stop a jump early 
 	m_IsJumping = false;
 	m_IsFalling = true;
+}
+
+void PlayableCharacter::setSpeedBoost(bool boost) {
+	speedBoostClock.restart();
+	
+	if (boost) {
+		m_Speed = 600; // Increased speed
+		m_SpeedBoost = true;
+	} else {
+		m_Speed = 400; // Normal speed
+		m_SpeedBoost = false;
+	}
 }
 
 

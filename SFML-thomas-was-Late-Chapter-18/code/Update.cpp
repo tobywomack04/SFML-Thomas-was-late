@@ -1,6 +1,7 @@
 #include "Engine.h"
 #include <SFML/Graphics.hpp>
 #include <sstream>
+#include <iostream>
 
 using namespace sf;
 using namespace std;
@@ -53,12 +54,6 @@ void Engine::update(float dtAsSeconds)
 		{
 			// Update the enemy
 			m_Enemies[i].update(dtAsSeconds);
-
-			// Has Thomas run into an enemy?
-			if (m_Thomas.getPosition().intersects(m_Enemies[i].getPosition()))
-			{
-				m_NewLevelRequired = true;
-			}
 		}
 	}// End if playing
 

@@ -14,8 +14,10 @@ private:
 	float speed = rand() % 61 + 90; // Range of (90 - 150)
 	bool movingRight = true;
 
+	string m_Type;
+
 public:
-	Enemy(Vector2f pos);
+	Enemy(Vector2f pos, string type);
 
 	void update(float dtAsSeconds);
 

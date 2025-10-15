@@ -29,7 +29,7 @@ int** LevelManager::nextLevel(VertexArray& rVaLevel)
 		levelToLoad = "levels/level1.txt";
 		m_StartPosition.x = 100;
 		m_StartPosition.y = 100;
-		m_BaseTimeLimit = 30.0f;
+		m_BaseTimeLimit = 80.0f;
 		break;
 
 	case 2:
@@ -114,11 +114,37 @@ int** LevelManager::nextLevel(VertexArray& rVaLevel)
 			if (tileValue == 5)
 			{
 				// Calculate world position based on tile coordinates
-				sf::Vector2f enemyPos(
-					x * TILE_SIZE + TILE_SIZE / 2.f, y * TILE_SIZE + TILE_SIZE / 2.f);
+				sf::Vector2f enemyPos(x * TILE_SIZE + TILE_SIZE / 2.f, y * TILE_SIZE + TILE_SIZE / 2.f);
 
 				// Spawn an enemy
-				m_Enemies.emplace_back(enemyPos);
+				m_Enemies.emplace_back(enemyPos, "Sideswipe");
+
+				// Replace the tile with floor (so no tile texture is drawn)
+				arrayLevel[y][x] = 0;
+			}
+
+			// Check if this tile represents a powerup spawn point
+			if (tileValue == 6)
+			{
+				// Calculate world position based on tile coordinates
+				sf::Vector2f powerupPos(x * TILE_SIZE + TILE_SIZE / 2.f, y * TILE_SIZE + TILE_SIZE / 2.f);
+
+				switch (tileValue) {
+				case 7: 
+					// Spawn a powerup
+					m_Powerups.emplace_back(powerupPos, "Health");
+					break;
+
+				case 6:
+					// Spawn a powerup
+					m_Powerups.emplace_back(powerupPos, "Speed");
+					break;
+
+				case 8:
+					// Spawn a powerup
+					m_Powerups.emplace_back(powerupPos, "??");
+					break;
+				}
 
 				// Replace the tile with floor (so no tile texture is drawn)
 				arrayLevel[y][x] = 0;
@@ -174,4 +200,8 @@ Vector2f LevelManager::getStartPosition()
 
 vector<Enemy>& LevelManager::getEnemies() {
 	return m_Enemies;
+}
+
+vector<Powerup>& LevelManager::getPowerups() {
+	return m_Powerups;
 }

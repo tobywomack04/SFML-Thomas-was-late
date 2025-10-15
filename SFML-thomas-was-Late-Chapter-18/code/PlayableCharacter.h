@@ -46,6 +46,9 @@ private:
 	// And a texture
 	Texture m_Texture;
 
+	bool m_SpeedBoost = false;
+	Clock speedBoostClock;
+
 	// All our public functions will come next
 public:
 
@@ -78,4 +81,6 @@ public:
 
 	// We will call this function once every frame
 	void update(float elapsedTime);
+
+	void setSpeedBoost(bool boost);
 };

@@ -7,20 +7,20 @@ using namespace std;
 Powerup::Powerup(Vector2f pos, string type)
 {
 	// Associate a texture with the sprite
-	if (type == "health")
+	if (type == "Health")
 	{
 		m_Sprite = Sprite(TextureHolder::GetTexture("graphics/heart.png"));
 		m_Type = "health";
 	}
-	else if (type == "ammo")
+	else if (type == "Speed")
 	{
-		m_Sprite = Sprite(TextureHolder::GetTexture("graphics/ammo.png"));
-		m_Type = "ammo";
+		m_Sprite = Sprite(TextureHolder::GetTexture("graphics/donut.png"));
+		m_Type = "Speed";
 	}
-	else if (type == "speed")
+	else if (type == "??")
 	{
 		m_Sprite = Sprite(TextureHolder::GetTexture("graphics/speed.png"));
-		m_Type = "speed";
+		m_Type = "??";
 	}
 
 	// Place the powerup at the starting point
@@ -37,4 +37,8 @@ FloatRect Powerup::getPosition()
 Sprite Powerup::getSprite()
 {
 	return m_Sprite;
+}
+
+string Powerup::getType() {
+	return m_Type;
 }

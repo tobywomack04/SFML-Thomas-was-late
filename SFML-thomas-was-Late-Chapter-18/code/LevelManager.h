@@ -19,6 +19,7 @@ private:
 
 	// A vector to store the enemies
 	vector<Enemy> m_Enemies;
+	vector<Powerup> m_Powerups;
 
 public:
 
@@ -36,4 +37,6 @@ public:
 	int getCurrentLevel();
 
 	vector<Enemy>& getEnemies();
+
+	vector<Powerup>& getPowerups();
 };

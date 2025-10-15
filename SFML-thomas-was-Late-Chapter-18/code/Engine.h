@@ -105,6 +105,9 @@ private:
 
 	// A vector to store the enemies
 	vector<Enemy>& m_Enemies;
+
+	// A vector to store the powerups
+	vector<Powerup>& m_Powerups;
 	
 public:
 	// The Engine constructor

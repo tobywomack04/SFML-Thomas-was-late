@@ -7,8 +7,7 @@ using namespace std;
 Thomas::Thomas()
 {
 	// Associate a texture with the sprite
-	m_Sprite = Sprite(TextureHolder::GetTexture(
-		"graphics/thomas.png"));
+	m_Sprite = Sprite(TextureHolder::GetTexture("graphics/thomas.png"));
 
 	m_JumpDuration = .45;
 }
@@ -20,7 +19,6 @@ bool Thomas::handleInput()
 
 	if (Keyboard::isKeyPressed(Keyboard::W))
 	{
-
 		// Start a jump if not already jumping
 		// but only if standing on a block (not falling)
 		if (!m_IsJumping && !m_IsFalling)
@@ -43,7 +41,6 @@ bool Thomas::handleInput()
 	{
 		m_LeftPressed = false;
 	}
-
 
 	if (Keyboard::isKeyPressed(Keyboard::D))
 	{

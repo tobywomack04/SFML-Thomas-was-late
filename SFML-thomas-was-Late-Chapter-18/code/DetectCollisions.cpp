@@ -40,6 +40,27 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 		character.spawn(m_LM.getStartPosition(), GRAVITY);
 	}
 
+	for (int i = 0; i < m_Enemies.size(); i++)
+	{
+		// Has Thomas run into an enemy?
+		if (m_Thomas.getPosition().intersects(m_Enemies[i].getPosition()))
+		{
+			character.spawn(m_LM.getStartPosition(), GRAVITY);
+		}
+	}
+
+	for (auto powerup = m_Powerups.begin(); powerup != m_Powerups.end(); ) {
+		if (powerup->getPosition().intersects(m_Thomas.getPosition())) {
+			if (powerup->getType() == "Speed") {
+				m_Thomas.setSpeedBoost(true);
+			}
+			powerup = m_Powerups.erase(powerup);
+		}
+		else {
+			++powerup; // Advance if not erased
+		}
+	}
+
 	for (int x = startX; x < endX; x++)
 	{
 		for (int y = startY; y < endY; y++)

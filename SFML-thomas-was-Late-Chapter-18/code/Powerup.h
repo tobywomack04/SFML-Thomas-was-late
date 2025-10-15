@@ -17,4 +17,6 @@ public:
 	FloatRect getPosition();
 
 	Sprite getSprite();
+
+	string getType();
 };

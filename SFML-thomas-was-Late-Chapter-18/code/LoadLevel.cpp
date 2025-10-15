@@ -16,6 +16,7 @@ void Engine::loadLevel()
 	delete[] m_ArrayLevel;
 
 	m_Enemies.clear();
+	m_Powerups.clear();
 
 	// Load the next 2d array with the map for the level
 	// And repopulate the vertex array as well

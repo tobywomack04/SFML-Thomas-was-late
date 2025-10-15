@@ -3,7 +3,7 @@
 using namespace sf;
 using namespace std;
 
-Engine::Engine() : m_Enemies(m_LM.getEnemies())
+Engine::Engine() : m_Enemies(m_LM.getEnemies()), m_Powerups(m_LM.getPowerups())
 {
 	// Get the screen resolution and create an SFML window and View
 	Vector2f resolution;

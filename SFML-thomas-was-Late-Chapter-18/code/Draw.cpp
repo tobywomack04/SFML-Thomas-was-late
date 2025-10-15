@@ -33,6 +33,11 @@ void Engine::draw()
 		m_Window.draw(m_Enemies[i].getSprite());
 	}
 
+	for (int i = 0; i < m_Powerups.size(); i++)
+	{
+		m_Window.draw(m_Powerups[i].getSprite());
+	}
+
 	// Draw the particle system
 	if (m_PS.running())
 	{
