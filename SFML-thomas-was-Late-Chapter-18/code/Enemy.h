@@ -28,5 +28,7 @@ public:
 	string getType();
 
 	void resetPosition();
+
+	Vector2f getCentre();
 };
 

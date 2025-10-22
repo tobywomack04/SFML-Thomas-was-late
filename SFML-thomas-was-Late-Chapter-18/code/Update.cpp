@@ -56,6 +56,29 @@ void Engine::update(float dtAsSeconds)
 			{
 				// Update the enemy
 				m_Enemies[i].update(dtAsSeconds, m_Thomas.getPosition());
+
+				if (m_Enemies[i].getType() == "Turret" && shotTimer.getElapsedTime().asSeconds() > 1)
+				{
+					// Pass the centre of the player and the centre of the crosshair to the shoot function
+					bullets[currentBullet].shoot(m_Enemies[i].getCentre().x, m_Enemies[i].getCentre().y, m_Enemies[i].getCentre().x + 500, m_Enemies[i].getCentre().y);
+					currentBullet++;
+
+					if (currentBullet > 99)
+					{
+						currentBullet = 0;
+					}
+
+					shotTimer.restart();
+				}
+			}
+
+			// Update any bullets that are in-flight
+			for (int i = 0; i < 100; i++)
+			{
+				if (bullets[i].isInFlight())
+				{
+					bullets[i].update(dtAsSeconds);
+				}
 			}
 		}
 	}// End if playing

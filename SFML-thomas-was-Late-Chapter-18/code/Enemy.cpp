@@ -15,12 +15,14 @@ Enemy::Enemy(Vector2f pos, string type)
         m_Sprite = Sprite(TextureHolder::GetTexture("graphics/Enemies/eyeball.png"));
 	}
     else {
-        m_Sprite = Sprite(TextureHolder::GetTexture("graphics/Enemies/eyeball.png"));
+        m_Sprite = Sprite(TextureHolder::GetTexture("graphics/Enemies/turret.png"));
+		m_Sprite.setScale(2.f, 2.f);
+		// m_Sprite.setOrigin(m_Sprite.getGlobalBounds().width / 2, m_Sprite.getGlobalBounds().height);
     }
 
     m_Type = type;
 
-    // Place the player at the starting point
+    // Place the enemy at the starting point
     m_StartPosition.x = pos.x;
     m_StartPosition.y = pos.y;
     m_Position.x = pos.x;
@@ -47,7 +49,6 @@ void Enemy::update(float dtAsSeconds, FloatRect playerPos) {
         m_Sprite.setPosition(m_Position);
     }
     else if (m_Type == "Stalker") {
-        // Update the zombie position variables
         if (playerPos.getPosition().x > m_Position.x)
         {
             m_Position.x = m_Position.x +
@@ -72,12 +73,15 @@ void Enemy::update(float dtAsSeconds, FloatRect playerPos) {
                 m_Speed * dtAsSeconds;
         }
 
-        // Move the sprite
+        // Set position of the sprite
         m_Sprite.setPosition(m_Position);
 
         // Face the sprite in the correct direction
         float angle = (atan2(playerPos.getPosition().y - m_Position.y, playerPos.getPosition().x - m_Position.x) * 180) / 3.141;
         m_Sprite.setRotation(angle);
+    }
+	else { // Turret enemy
+        m_Sprite.setPosition(m_Position);
     }
 }
 
@@ -99,4 +103,9 @@ void Enemy::resetPosition() {
     m_Position.x = m_StartPosition.x;
     m_Position.y = m_StartPosition.y;
 	m_Sprite.setPosition(m_Position);
+}
+
+Vector2f Enemy::getCentre()
+{
+    return Vector2f(m_Position.x + m_Sprite.getGlobalBounds().width / 2, m_Position.y + m_Sprite.getGlobalBounds().height / 2);
 }

@@ -8,6 +8,7 @@
 #include "SoundManager.h"
 #include "HUD.h"
 #include "ParticleSystem.h"
+#include "Bullet.h"
 
 using namespace sf;
 using namespace std;
@@ -111,6 +112,13 @@ private:
 
 	// Creating a light blue transparent overlay when the freeze effect is active
 	RectangleShape frozenOverlay;
+
+	// Array of 100 bullets
+	Bullet bullets[100];
+
+	int currentBullet = 0;
+
+	Clock shotTimer;
 	
 public:
 	// The Engine constructor

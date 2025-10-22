@@ -38,6 +38,14 @@ void Engine::draw()
 		m_Window.draw(m_Powerups[i].getSprite());
 	}
 
+	for (int i = 0; i < 100; i++)
+	{
+		if (bullets[i].isInFlight())
+		{
+			m_Window.draw(bullets[i].getShape());
+		}
+	}
+
 	// Draw the particle system
 	if (m_PS.running())
 	{

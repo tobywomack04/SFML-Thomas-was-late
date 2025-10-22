@@ -54,6 +54,9 @@
     <ClInclude Include="code\Thomas.h">
       <Filter>Header Files\Characters</Filter>
     </ClInclude>
+    <ClInclude Include="code\Bullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\DetectCollisions.cpp">
@@ -109,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="code\Thomas.cpp">
       <Filter>Source Files\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Bullet.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

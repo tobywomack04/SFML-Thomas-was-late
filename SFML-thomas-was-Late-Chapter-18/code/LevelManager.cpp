@@ -167,6 +167,19 @@ int** LevelManager::nextLevel(VertexArray& rVaLevel)
 				// Replace the tile with floor (so no tile texture is drawn)
 				arrayLevel[y][x] = 0;
 			}
+
+			// Check if this tile represents an enemy spawn point
+			if (tileValue == 8)
+			{
+				// Calculate world position based on tile coordinates
+				sf::Vector2f enemyPos(x * TILE_SIZE + TILE_SIZE / 2.f, y * TILE_SIZE + TILE_SIZE / 2.f);
+
+				// Spawn an enemy
+				m_Enemies.emplace_back(enemyPos, "Turret");
+
+				// Replace the tile with floor (so no tile texture is drawn)
+				arrayLevel[y][x] = 0;
+			}
 			
 			// Position each vertex in the current quad
 			rVaLevel[currentVertex + 0].position = Vector2f(x * TILE_SIZE, y * TILE_SIZE);

@@ -74,6 +74,22 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 		}
 	}
 
+	for (int i = 0; i < 100; i++)
+	{
+		for (int j = 0; j < m_Enemies.size(); j++)
+		{
+			// Has a bullet hit an enemy?
+			if (bullets[i].isInFlight() && bullets[i].getPosition().intersects(m_Enemies[j].getPosition()))
+			{
+				// Stop the bullet
+				bullets[i].stop();
+
+				// Respawn Thomas
+				character.spawn(m_LM.getStartPosition(), GRAVITY);
+			}
+		}
+	}
+
 	for (int x = startX; x < endX; x++)
 	{
 		for (int y = startY; y < endY; y++)
