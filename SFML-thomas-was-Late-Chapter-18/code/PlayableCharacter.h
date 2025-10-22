@@ -49,6 +49,12 @@ private:
 	bool m_SpeedBoost = false;
 	Clock speedBoostClock;
 
+	bool m_JumpBoost = false;
+	Clock jumpBoostClock;
+
+	bool m_FreezeTime = false;
+	Clock freezeTimeClock;
+
 	// All our public functions will come next
 public:
 
@@ -83,4 +89,8 @@ public:
 	void update(float elapsedTime);
 
 	void setSpeedBoost(bool boost);
+	void setFreezeTime(bool boost);
+	void setJumpBoost(bool boost);
+
+	bool isTimeFrozen();
 };

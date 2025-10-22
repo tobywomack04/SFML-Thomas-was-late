@@ -39,7 +39,12 @@ void PlayableCharacter::update(float elapsedTime)
 		if (m_TimeThisJump < m_JumpDuration)
 		{
 			// Move up at twice gravity
-			m_Position.y -= m_Gravity * 2 * elapsedTime;
+			if (!m_JumpBoost) {
+				m_Position.y -= m_Gravity * 2 * elapsedTime;
+			}
+			else {
+				m_Position.y -= m_Gravity * 4 * elapsedTime;
+			}
 		}
 		else
 		{
@@ -87,6 +92,18 @@ void PlayableCharacter::update(float elapsedTime)
 	if (m_SpeedBoost) {
 		if (speedBoostClock.getElapsedTime().asSeconds() >= 2) {
 			setSpeedBoost(false);
+		}
+	}
+
+	if (m_JumpBoost) {
+		if (jumpBoostClock.getElapsedTime().asSeconds() >= 2) {
+			setJumpBoost(false);
+		}
+	}
+
+	if (m_FreezeTime) {
+		if (freezeTimeClock.getElapsedTime().asSeconds() >= 2) {
+			setFreezeTime(false);
 		}
 	}
 }
@@ -164,5 +181,28 @@ void PlayableCharacter::setSpeedBoost(bool boost) {
 	}
 }
 
+void PlayableCharacter::setJumpBoost(bool boost) {
+	jumpBoostClock.restart();
 
+	if (boost) {
+		m_JumpBoost = true;
+	}
+	else {
+		m_JumpBoost = false;
+	}
+}
 
+void PlayableCharacter::setFreezeTime(bool boost) {
+	freezeTimeClock.restart();
+
+	if (boost) {
+		m_FreezeTime = true;
+	}
+	else {
+		m_FreezeTime = false;
+	}
+}
+
+bool PlayableCharacter::isTimeFrozen() {
+	return m_FreezeTime;
+}

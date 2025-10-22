@@ -11,7 +11,7 @@ private:
 	Vector2f m_Position;
 	Vector2f m_StartPosition;
 
-	float speed = rand() % 61 + 90; // Range of (90 - 150)
+	float m_Speed = rand() % 61 + 90; // Range of (90 - 150)
 	bool movingRight = true;
 
 	string m_Type;
@@ -19,10 +19,14 @@ private:
 public:
 	Enemy(Vector2f pos, string type);
 
-	void update(float dtAsSeconds);
+	void update(float dtAsSeconds, FloatRect playerPos);
 
 	FloatRect getPosition();
 
 	Sprite getSprite();
+
+	string getType();
+
+	void resetPosition();
 };
 

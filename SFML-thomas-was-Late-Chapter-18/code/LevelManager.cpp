@@ -4,12 +4,15 @@
 #include <sstream>
 #include <fstream>
 #include "LevelManager.h"
+#include <iostream>
 
 using namespace sf;
 using namespace std;
 
 int** LevelManager::nextLevel(VertexArray& rVaLevel)
 {
+	srand(time(NULL));
+
 	m_LevelSize.x = 0;
 	m_LevelSize.y = 0;
 
@@ -27,8 +30,8 @@ int** LevelManager::nextLevel(VertexArray& rVaLevel)
 	{
 	case 1:
 		levelToLoad = "levels/level1.txt";
-		m_StartPosition.x = 100;
-		m_StartPosition.y = 100;
+		m_StartPosition.x = 300;
+		m_StartPosition.y = 400;
 		m_BaseTimeLimit = 80.0f;
 		break;
 
@@ -122,29 +125,44 @@ int** LevelManager::nextLevel(VertexArray& rVaLevel)
 				// Replace the tile with floor (so no tile texture is drawn)
 				arrayLevel[y][x] = 0;
 			}
-
+			
 			// Check if this tile represents a powerup spawn point
 			if (tileValue == 6)
 			{
 				// Calculate world position based on tile coordinates
 				sf::Vector2f powerupPos(x * TILE_SIZE + TILE_SIZE / 2.f, y * TILE_SIZE + TILE_SIZE / 2.f);
 
-				switch (tileValue) {
-				case 7: 
-					// Spawn a powerup
-					m_Powerups.emplace_back(powerupPos, "Health");
+				int randPowerup = rand() % 3; // Random number between 0 and 2
+
+				switch (randPowerup) {
+				case 0: 
+					// Spawn a freeze powerup
+					m_Powerups.emplace_back(powerupPos, "Freeze");
 					break;
 
-				case 6:
-					// Spawn a powerup
+				case 1:
+					// Spawn a speed powerup
 					m_Powerups.emplace_back(powerupPos, "Speed");
 					break;
 
-				case 8:
-					// Spawn a powerup
-					m_Powerups.emplace_back(powerupPos, "??");
+				case 2:
+					// Spawn a jump powerup
+					m_Powerups.emplace_back(powerupPos, "Jump");
 					break;
 				}
+
+				// Replace the tile with floor (so no tile texture is drawn)
+				arrayLevel[y][x] = 0;
+			}
+
+			// Check if this tile represents an enemy spawn point
+			if (tileValue == 7)
+			{
+				// Calculate world position based on tile coordinates
+				sf::Vector2f enemyPos(x * TILE_SIZE + TILE_SIZE / 2.f, y * TILE_SIZE + TILE_SIZE / 2.f);
+
+				// Spawn an enemy
+				m_Enemies.emplace_back(enemyPos, "Stalker");
 
 				// Replace the tile with floor (so no tile texture is drawn)
 				arrayLevel[y][x] = 0;

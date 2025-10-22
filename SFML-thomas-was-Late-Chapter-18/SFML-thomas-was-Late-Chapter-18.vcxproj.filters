@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Characters">
+      <UniqueIdentifier>{cf08066b-9719-49d9-aeec-d244e6a8ac54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Characters">
+      <UniqueIdentifier>{9ff6c85e-cefe-46af-9c16-3ddf5536746d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\Engine.h">
@@ -30,23 +36,23 @@
     <ClInclude Include="code\ParticleSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="code\PlayableCharacter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="code\SoundManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="code\TextureHolder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="code\Thomas.h">
+    <ClInclude Include="code\Powerup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="code\Enemy.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Characters</Filter>
     </ClInclude>
-    <ClInclude Include="code\Powerup.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="code\PlayableCharacter.h">
+      <Filter>Header Files\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Thomas.h">
+      <Filter>Header Files\Characters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -80,9 +86,6 @@
     <ClCompile Include="code\ParticleSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="code\PlayableCharacter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="code\PopulateEmitters.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -92,17 +95,20 @@
     <ClCompile Include="code\TextureHolder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="code\Thomas.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="code\Update.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="code\Enemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="code\Powerup.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Enemy.cpp">
+      <Filter>Source Files\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="code\PlayableCharacter.cpp">
+      <Filter>Source Files\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Thomas.cpp">
+      <Filter>Source Files\Characters</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

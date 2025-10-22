@@ -108,6 +108,9 @@ private:
 
 	// A vector to store the powerups
 	vector<Powerup>& m_Powerups;
+
+	// Creating a light blue transparent overlay when the freeze effect is active
+	RectangleShape frozenOverlay;
 	
 public:
 	// The Engine constructor

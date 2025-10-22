@@ -17,17 +17,16 @@ Engine::Engine() : m_Enemies(m_LM.getEnemies()), m_Powerups(m_LM.getPowerups())
 	m_HudView.reset(FloatRect(0, 0, resolution.x, resolution.y));
 
 	// Inititialize the split-screen Views
-	m_LeftView.setViewport(
-		FloatRect(0.001f, 0.001f, 0.498f, 0.998f));
+	m_LeftView.setViewport(FloatRect(0.001f, 0.001f, 0.498f, 0.998f));
 
-	m_RightView.setViewport(
-		FloatRect(0.5f, 0.001f, 0.499f, 0.998f));
+	m_RightView.setViewport(FloatRect(0.5f, 0.001f, 0.499f, 0.998f));
 
-	m_BGLeftView.setViewport(
-		FloatRect(0.001f, 0.001f, 0.498f, 0.998f));
+	m_BGLeftView.setViewport(FloatRect(0.001f, 0.001f, 0.498f, 0.998f));
 
-	m_BGRightView.setViewport(
-		FloatRect(0.5f, 0.001f, 0.499f, 0.998f));
+	m_BGRightView.setViewport(FloatRect(0.5f, 0.001f, 0.499f, 0.998f));
+	
+	frozenOverlay.setSize((Vector2f(m_Window.getSize().x, m_Window.getSize().y)));
+	frozenOverlay.setFillColor(sf::Color(173, 216, 230, 50));
 
 	// Can this graphics card use shaders?
 	if (!sf::Shader::isAvailable())

@@ -46,13 +46,26 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 		if (m_Thomas.getPosition().intersects(m_Enemies[i].getPosition()))
 		{
 			character.spawn(m_LM.getStartPosition(), GRAVITY);
+			m_Enemies[i].resetPosition();
 		}
 	}
 
-	for (auto powerup = m_Powerups.begin(); powerup != m_Powerups.end(); ) {
-		if (powerup->getPosition().intersects(m_Thomas.getPosition())) {
-			if (powerup->getType() == "Speed") {
+	// Has Thomas run into a powerup?
+	for (auto powerup = m_Powerups.begin(); powerup != m_Powerups.end(); ) 
+	{
+		if (powerup->getPosition().intersects(m_Thomas.getPosition())) 
+		{
+			if (powerup->getType() == "Speed") 
+			{
 				m_Thomas.setSpeedBoost(true);
+			}
+			else if (powerup->getType() == "Freeze")
+			{
+				m_Thomas.setFreezeTime(true);
+			}
+			else // Jump powerup
+			{
+				m_Thomas.setJumpBoost(true);
 			}
 			powerup = m_Powerups.erase(powerup);
 		}

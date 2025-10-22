@@ -41,19 +41,22 @@ void Engine::update(float dtAsSeconds)
 			m_SM.playReachGoal();
 		}
 
-		// Count down the time the player has left
-		m_TimeRemaining -= dtAsSeconds;
-
-		// Have Thomas and Bob run out of time?
-		if (m_TimeRemaining <= 0)
+		if (!m_Thomas.isTimeFrozen())
 		{
-			m_NewLevelRequired = true;
-		}
+			// Count down the time the player has left
+			m_TimeRemaining -= dtAsSeconds;
 
-		for (int i = 0; i < m_Enemies.size(); i++)
-		{
-			// Update the enemy
-			m_Enemies[i].update(dtAsSeconds);
+			// Have Thomas and Bob run out of time?
+			if (m_TimeRemaining <= 0)
+			{
+				m_NewLevelRequired = true;
+			}
+
+			for (int i = 0; i < m_Enemies.size(); i++)
+			{
+				// Update the enemy
+				m_Enemies[i].update(dtAsSeconds, m_Thomas.getPosition());
+			}
 		}
 	}// End if playing
 
