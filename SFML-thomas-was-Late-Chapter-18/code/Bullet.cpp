@@ -23,7 +23,7 @@ void Bullet::shoot(float startX, float startY, float targetX, float targetY)
 	m_InFlight = true;
 
 	// Spawn bullet slightly in front of the turret
-	float spawnOffset = (m_BulletShape.getSize().x * 0.6f);
+	float spawnOffset = (m_BulletShape.getSize().x * 0.9f);
 	m_Position = Vector2f(startX + direction.x * spawnOffset, startY + direction.y * spawnOffset);
 
 	// Bullet velocity components

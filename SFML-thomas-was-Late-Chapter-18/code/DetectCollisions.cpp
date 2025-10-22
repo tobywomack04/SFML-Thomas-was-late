@@ -38,6 +38,18 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 	{
 		// respawn the character
 		character.spawn(m_LM.getStartPosition(), GRAVITY);
+
+		for (int i = 0; i < 100; i++)
+		{
+			// Stop the bullets
+			bullets[i].stop();
+		}
+
+		for (int j = 0; j < m_Enemies.size(); j++)
+		{
+			// Reset enemy positions
+			m_Enemies[j].resetPosition();
+		}
 	}
 
 	for (int i = 0; i < m_Enemies.size(); i++)
@@ -46,7 +58,18 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 		if (m_Thomas.getPosition().intersects(m_Enemies[i].getPosition()))
 		{
 			character.spawn(m_LM.getStartPosition(), GRAVITY);
-			m_Enemies[i].resetPosition();
+			
+			for (int i = 0; i < 100; i++)
+			{
+				// Stop the bullets
+				bullets[i].stop();
+			}
+
+			for (int j = 0; j < m_Enemies.size(); j++)
+			{
+				// Reset enemy positions
+				m_Enemies[j].resetPosition();
+			}
 		}
 	}
 
@@ -76,16 +99,22 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 
 	for (int i = 0; i < 100; i++)
 	{
-		for (int j = 0; j < m_Enemies.size(); j++)
+		// Has a bullet hit Thomas?
+		if (bullets[i].isInFlight() && bullets[i].getPosition().intersects(m_Thomas.getPosition()))
 		{
-			// Has a bullet hit an enemy?
-			if (bullets[i].isInFlight() && bullets[i].getPosition().intersects(m_Enemies[j].getPosition()))
-			{
-				// Stop the bullet
-				bullets[i].stop();
+			// Respawn Thomas
+			character.spawn(m_LM.getStartPosition(), GRAVITY);
 
-				// Respawn Thomas
-				character.spawn(m_LM.getStartPosition(), GRAVITY);
+			for (int i = 0; i < 100; i++)
+			{
+				// Stop the bullets
+				bullets[i].stop();
+			}
+
+			for (int j = 0; j < m_Enemies.size(); j++)
+			{
+				// Reset enemy positions
+				m_Enemies[j].resetPosition();
 			}
 		}
 	}
@@ -116,6 +145,18 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 					{
 						// Play a sound
 						m_SM.playFallInWater();
+					}
+
+					for (int i = 0; i < 100; i++)
+					{
+						// Stop the bullets
+						bullets[i].stop();
+					}
+
+					for (int j = 0; j < m_Enemies.size(); j++)
+					{
+						// Reset enemy positions
+						m_Enemies[j].resetPosition();
 					}
 				}
 			}

@@ -10,18 +10,11 @@ void Engine::update(float dtAsSeconds)
 {
 	if (m_NewLevelRequired)
 	{
-		// These calls to spawn will be moved to a new
-		// LoadLevel function soon
-		// Spawn Thomas and Bob
-		//m_Thomas.spawn(Vector2f(0,0), GRAVITY);
-		//m_Bob.spawn(Vector2f(100, 0), GRAVITY);
-
-		// Make sure spawn is called only once
-		//m_TimeRemaining = 10;
-		//m_NewLevelRequired = false;
-
 		// Load a level
 		loadLevel();
+
+		// Seed the random number generator
+		srand(time(NULL));
 	}
 
 	if (m_Playing)
@@ -29,9 +22,8 @@ void Engine::update(float dtAsSeconds)
 		// Update Thomas
 		m_Thomas.update(dtAsSeconds);
 
-		// Detect collisions and see if characters have reached the goal tile
-		// The second part of the if condition is only executed
-		// when thomas is touching the home tile
+		/* Detect collisions and see if characters have reached the goal tile
+		The second part of the if condition is only executed when thomas is touching the home tile */
 		if (detectCollisions(m_Thomas))
 		{
 			// New level required
@@ -57,10 +49,24 @@ void Engine::update(float dtAsSeconds)
 				// Update the enemy
 				m_Enemies[i].update(dtAsSeconds, m_Thomas.getPosition());
 
-				if (m_Enemies[i].getType() == "Turret" && shotTimer.getElapsedTime().asSeconds() > 1)
+				if (m_Enemies[i].getType() == "Turret" && shotTimer.getElapsedTime().asSeconds() > 2)
 				{
 					// Pass the centre of the player and the centre of the crosshair to the shoot function
-					bullets[currentBullet].shoot(m_Enemies[i].getCentre().x, m_Enemies[i].getCentre().y, m_Enemies[i].getCentre().x + 500, m_Enemies[i].getCentre().y);
+					int randDir = rand() % 2; // 0 or 1
+
+					switch (randDir)
+					{
+					case 0:
+						bullets[currentBullet].shoot(m_Enemies[i].getCentre().x, m_Enemies[i].getCentre().y, m_Enemies[i].getCentre().x + 500, m_Enemies[i].getCentre().y);
+						m_Enemies[i].faceRight();
+						break;
+
+					case 1:
+						bullets[currentBullet].shoot(m_Enemies[i].getCentre().x, m_Enemies[i].getCentre().y, m_Enemies[i].getCentre().x - 500, m_Enemies[i].getCentre().y);
+						m_Enemies[i].faceLeft();
+						break;
+					}
+					
 					currentBullet++;
 
 					if (currentBullet > 99)

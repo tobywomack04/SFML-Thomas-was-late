@@ -15,9 +15,7 @@ Enemy::Enemy(Vector2f pos, string type)
         m_Sprite = Sprite(TextureHolder::GetTexture("graphics/Enemies/eyeball.png"));
 	}
     else {
-        m_Sprite = Sprite(TextureHolder::GetTexture("graphics/Enemies/turret.png"));
-		m_Sprite.setScale(2.f, 2.f);
-		// m_Sprite.setOrigin(m_Sprite.getGlobalBounds().width / 2, m_Sprite.getGlobalBounds().height);
+        m_Sprite = Sprite(TextureHolder::GetTexture("graphics/Enemies/turretRight.png"));
     }
 
     m_Type = type;
@@ -108,4 +106,12 @@ void Enemy::resetPosition() {
 Vector2f Enemy::getCentre()
 {
     return Vector2f(m_Position.x + m_Sprite.getGlobalBounds().width / 2, m_Position.y + m_Sprite.getGlobalBounds().height / 2);
+}
+
+void Enemy::faceRight () {
+    m_Sprite = Sprite(TextureHolder::GetTexture("graphics/Enemies/turretRight.png"));
+}
+
+void Enemy::faceLeft() {
+    m_Sprite = Sprite(TextureHolder::GetTexture("graphics/Enemies/turretLeft.png"));
 }

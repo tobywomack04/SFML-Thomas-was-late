@@ -30,5 +30,8 @@ public:
 	void resetPosition();
 
 	Vector2f getCentre();
+
+	void faceRight();
+	void faceLeft();
 };
 
