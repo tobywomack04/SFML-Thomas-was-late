@@ -6,7 +6,7 @@ using namespace std;
 
 Powerup::Powerup(Vector2f pos, string type)
 {
-	// Associate a texture with the sprite
+	// Associate a texture with the sprite based on powerup type
 	if (type == "Freeze")
 	{
 		m_Sprite = Sprite(TextureHolder::GetTexture("graphics/powerups/snowflake.png"));
@@ -39,6 +39,7 @@ Sprite Powerup::getSprite()
 	return m_Sprite;
 }
 
-string Powerup::getType() {
+string Powerup::getType() 
+{
 	return m_Type;
 }

@@ -60,17 +60,19 @@ void Engine::draw()
 	m_Window.draw(m_Hud.getLevel());
 	m_Window.draw(m_Hud.getTime());
 
+	// If time is frozen, draw the frozen overlay
 	if (m_Thomas.isTimeFrozen())
 	{
-		// Draw the frozen overlay
 		m_Window.draw(frozenOverlay);
 	}
 
+	// Show start message if not playing
 	if (!m_Playing)
 	{
 		m_Window.draw(m_Hud.getMessage());
 	}
 
+	// If paused, show the scoreboard
 	if (paused)
 	{
 		m_Window.draw(m_Hud.getScoreboard());

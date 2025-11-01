@@ -88,9 +88,11 @@ public:
 	// We will call this function once every frame
 	void update(float elapsedTime);
 
+	// Powerup setters
 	void setSpeedBoost(bool boost);
 	void setFreezeTime(bool boost);
 	void setJumpBoost(bool boost);
 
+	// Is time currently frozen for this character
 	bool isTimeFrozen();
 };

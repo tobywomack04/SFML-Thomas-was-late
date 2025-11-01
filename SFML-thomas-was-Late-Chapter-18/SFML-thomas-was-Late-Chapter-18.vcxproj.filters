@@ -45,6 +45,9 @@
     <ClInclude Include="code\Powerup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="code\Bullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="code\Enemy.h">
       <Filter>Header Files\Characters</Filter>
     </ClInclude>
@@ -53,9 +56,6 @@
     </ClInclude>
     <ClInclude Include="code\Thomas.h">
       <Filter>Header Files\Characters</Filter>
-    </ClInclude>
-    <ClInclude Include="code\Bullet.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -17,6 +17,7 @@ void Engine::update(float dtAsSeconds)
 		// Seed the random number generator
 		srand(time(NULL));
 		
+		// Check for high score upon circling back to level 1
 		if (m_LM.getCurrentLevel() == 1 && takeScore)
 		{
 			addHighScore(highScore);
@@ -24,7 +25,7 @@ void Engine::update(float dtAsSeconds)
 			highScore = 0;
 			takeScore = false;
 		}
-		else if (m_LM.getCurrentLevel() == 4)
+		else if (m_LM.getCurrentLevel() == 4) // Set flag to take score next time we circle back to level 1
 		{
 			takeScore = true;
 		}
@@ -48,9 +49,11 @@ void Engine::update(float dtAsSeconds)
 			// Play the reach goal sound
 			m_SM.playReachGoal();
 
+			// Add to the high score
 			highScore += (m_LM.getTimeLimit() - m_TimeRemaining);
 		}
 
+		// Update the scoreboard text
 		stringstream ss;
 		for (float score : scoreBoard)
 		{
@@ -75,27 +78,28 @@ void Engine::update(float dtAsSeconds)
 				// Update the enemy
 				m_Enemies[i].update(dtAsSeconds, m_Thomas.getPosition());
 
+				// Update the turret shooting
 				if (m_Enemies[i].getType() == "Turret" && shotTimer.getElapsedTime().asSeconds() > 2)
 				{
-					// Pass the centre of the player and the centre of the crosshair to the shoot function
+					// Shoot left or right randomly
 					int randDir = rand() % 2; // 0 or 1
 
 					switch (randDir)
 					{
 					case 0:
 						bullets[currentBullet].shoot(m_Enemies[i].getCentre().x, m_Enemies[i].getCentre().y, m_Enemies[i].getCentre().x + 500, m_Enemies[i].getCentre().y);
-						m_Enemies[i].faceRight();
+						m_Enemies[i].faceRight(); // Make turret face right
 						break;
 
 					case 1:
 						bullets[currentBullet].shoot(m_Enemies[i].getCentre().x, m_Enemies[i].getCentre().y, m_Enemies[i].getCentre().x - 500, m_Enemies[i].getCentre().y);
-						m_Enemies[i].faceLeft();
+						m_Enemies[i].faceLeft(); // Make turret face left
 						break;
 					}
 					
 					currentBullet++;
 
-					if (currentBullet > 99)
+					if (currentBullet > 49)
 					{
 						currentBullet = 0;
 					}
@@ -113,7 +117,7 @@ void Engine::update(float dtAsSeconds)
 				}
 			}
 		}
-	}// End if playing
+	} // End if playing
 
 	// Check if a fire sound needs to be played
 	vector<Vector2f>::iterator it;

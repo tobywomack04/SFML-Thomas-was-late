@@ -85,15 +85,15 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 	{
 		if (powerup->getPosition().intersects(m_Thomas.getPosition())) 
 		{
-			if (powerup->getType() == "Speed") 
+			if (powerup->getType() == "Speed") // Speed boost powerup
 			{
 				m_Thomas.setSpeedBoost(true);
 			}
-			else if (powerup->getType() == "Freeze")
+			else if (powerup->getType() == "Freeze") // Freeze time powerup
 			{
 				m_Thomas.setFreezeTime(true);
 			}
-			else // Jump powerup
+			else // Jump boost powerup
 			{
 				m_Thomas.setJumpBoost(true);
 			}

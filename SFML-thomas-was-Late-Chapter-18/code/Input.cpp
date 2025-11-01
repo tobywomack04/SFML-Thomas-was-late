@@ -22,11 +22,16 @@ void Engine::input()
 			{
 				m_Playing = true;
 
-				createNewSave();
+				if (!loadSaveFile())
+				{
+					// Create a new save file with default values
+					createNewSave();
+				}
 
 				gameStarted = true;
 			}
 
+			// Handle the player pausing/unpausing the game
 			if (Keyboard::isKeyPressed(Keyboard::Tab))
 			{
 				if (!paused)

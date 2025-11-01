@@ -36,7 +36,7 @@ public:
 
 	int getCurrentLevel();
 
+	// Enemy and powerup vectors
 	vector<Enemy>& getEnemies();
-
 	vector<Powerup>& getPowerups();
 };

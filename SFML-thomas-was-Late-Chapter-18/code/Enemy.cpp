@@ -29,6 +29,7 @@ Enemy::Enemy(Vector2f pos, string type)
 
 void Enemy::update(float dtAsSeconds, FloatRect playerPos) {
 
+	// Update sideswipe enemy
     if (m_Type == "Sideswipe") {
         if (m_Position.x > m_StartPosition.x + 100) {
             movingRight = false;
@@ -46,7 +47,7 @@ void Enemy::update(float dtAsSeconds, FloatRect playerPos) {
 
         m_Sprite.setPosition(m_Position);
     }
-    else if (m_Type == "Stalker") {
+	else if (m_Type == "Stalker") { // Update stalker enemy
         if (playerPos.getPosition().x > m_Position.x)
         {
             m_Position.x = m_Position.x +
@@ -78,7 +79,7 @@ void Enemy::update(float dtAsSeconds, FloatRect playerPos) {
         float angle = (atan2(playerPos.getPosition().y - m_Position.y, playerPos.getPosition().x - m_Position.x) * 180) / 3.141;
         m_Sprite.setRotation(angle);
     }
-	else { // Turret enemy
+	else { // Update turret enemy
         m_Sprite.setPosition(m_Position);
     }
 }

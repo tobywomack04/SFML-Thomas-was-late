@@ -16,6 +16,7 @@ void Engine::createNewSave()
 		return;
 	}
 	
+	// Load default scores
 	for (size_t i = 0; i < scoreBoard.size(); i++)
 	{
 		saveFile << fixed << setprecision(5) << scoreBoard[i];
@@ -39,6 +40,7 @@ bool Engine::loadSaveFile()
 		return false;
 	}
 
+	// Read scores into the scoreboard
 	for (size_t i = 0; i < scoreBoard.size(); i++)
 	{
 		if (!(loadFile >> scoreBoard[i]))
@@ -62,6 +64,7 @@ void Engine::updateSaveFile()
 		return;
 	}
 
+	// Write scores from the scoreboard to save file
 	for (size_t i = 0; i < scoreBoard.size(); i++)
 	{
 		saveFile << fixed << setprecision(5) << scoreBoard[i];

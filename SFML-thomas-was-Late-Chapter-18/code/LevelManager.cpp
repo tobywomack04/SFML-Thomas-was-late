@@ -119,7 +119,7 @@ int** LevelManager::nextLevel(VertexArray& rVaLevel)
 				// Calculate world position based on tile coordinates
 				sf::Vector2f enemyPos(x * TILE_SIZE + TILE_SIZE / 2.f, y * TILE_SIZE + TILE_SIZE / 2.f);
 
-				// Spawn an enemy
+				// Spawn sideswipe enemy
 				m_Enemies.emplace_back(enemyPos, "Sideswipe");
 
 				// Replace the tile with floor (so no tile texture is drawn)
@@ -136,17 +136,17 @@ int** LevelManager::nextLevel(VertexArray& rVaLevel)
 
 				switch (randPowerup) {
 				case 0: 
-					// Spawn a freeze powerup
+					// Spawn a freeze time powerup
 					m_Powerups.emplace_back(powerupPos, "Freeze");
 					break;
 
 				case 1:
-					// Spawn a speed powerup
+					// Spawn a speed boost powerup
 					m_Powerups.emplace_back(powerupPos, "Speed");
 					break;
 
 				case 2:
-					// Spawn a jump powerup
+					// Spawn a jump boost powerup
 					m_Powerups.emplace_back(powerupPos, "Jump");
 					break;
 				}
@@ -161,7 +161,7 @@ int** LevelManager::nextLevel(VertexArray& rVaLevel)
 				// Calculate world position based on tile coordinates
 				sf::Vector2f enemyPos(x * TILE_SIZE + TILE_SIZE / 2.f, y * TILE_SIZE + TILE_SIZE / 2.f);
 
-				// Spawn an enemy
+				// Spawn stallker enemy
 				m_Enemies.emplace_back(enemyPos, "Stalker");
 
 				// Replace the tile with floor (so no tile texture is drawn)
@@ -174,7 +174,7 @@ int** LevelManager::nextLevel(VertexArray& rVaLevel)
 				// Calculate world position based on tile coordinates
 				sf::Vector2f enemyPos(x * TILE_SIZE + TILE_SIZE / 2.f, y * TILE_SIZE + TILE_SIZE / 2.f);
 
-				// Spawn an enemy
+				// Spawn turret enemy
 				m_Enemies.emplace_back(enemyPos, "Turret");
 
 				// Replace the tile with floor (so no tile texture is drawn)
