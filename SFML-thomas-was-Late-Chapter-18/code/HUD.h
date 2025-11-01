@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <string>
 
 using namespace sf;
 
@@ -10,6 +11,8 @@ private:
 	Text m_StartText;
 	Text m_TimeText;
 	Text m_LevelText;
+	Text scoreBoardText;
+	Text scoreBoardHeading;
 
 public:
 	Hud();
@@ -19,4 +22,8 @@ public:
 
 	void setLevel(String text);
 	void setTime(String text);
+
+	void setScoreboard(String text);
+	Text getScoreboard();
+	Text getScoreboardHeading();
 };

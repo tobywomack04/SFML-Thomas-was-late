@@ -14,7 +14,7 @@ Enemy::Enemy(Vector2f pos, string type)
     else if (type == "Stalker") {
         m_Sprite = Sprite(TextureHolder::GetTexture("graphics/Enemies/eyeball.png"));
 	}
-    else {
+	else { // Turret enemy
         m_Sprite = Sprite(TextureHolder::GetTexture("graphics/Enemies/turretRight.png"));
     }
 

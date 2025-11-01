@@ -4,7 +4,7 @@
 // The constructor
 Bullet::Bullet()
 {
-	m_BulletShape.setSize(sf::Vector2f(10, 10));
+	m_BulletShape.setSize(Vector2f(10, 10));
 	m_BulletShape.setFillColor(Color::Red);
     m_BulletShape.setOrigin(m_BulletShape.getSize() / 2.f);
 }
@@ -12,12 +12,12 @@ Bullet::Bullet()
 void Bullet::shoot(float startX, float startY, float targetX, float targetY)
 {
 	// Calculate normalized direction vector
-	sf::Vector2f direction(targetX - startX, targetY - startY);
+	Vector2f direction(targetX - startX, targetY - startY);
 	float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
 	if (length != 0.f)
 		direction /= length;
 	else
-		direction = sf::Vector2f(1.f, 0.f); // fallback
+		direction = Vector2f(1.f, 0.f); // fallback
 
 	// Mark in flight
 	m_InFlight = true;

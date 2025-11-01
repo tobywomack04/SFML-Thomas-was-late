@@ -9,6 +9,7 @@
 #include "HUD.h"
 #include "ParticleSystem.h"
 #include "Bullet.h"
+#include <vector>
 
 using namespace sf;
 using namespace std;
@@ -98,8 +99,7 @@ private:
 	bool detectCollisions(PlayableCharacter& character);
 	
 	// Make a vector of the best places to emit sounds from
-	void populateEmitters(vector <Vector2f>& vSoundEmitters,
-		int** arrayLevel);
+	void populateEmitters(vector <Vector2f>& vSoundEmitters, int** arrayLevel);
 
 	// A vector of Vector2f for the fire emiiter locations
 	vector <Vector2f> m_FireEmitters;
@@ -113,12 +113,23 @@ private:
 	// Creating a light blue transparent overlay when the freeze effect is active
 	RectangleShape frozenOverlay;
 
-	// Array of 100 bullets
-	Bullet bullets[100];
+	// Array of 50 bullets
+	Bullet bullets[50];
 
 	int currentBullet = 0;
 
 	Clock shotTimer;
+
+	bool paused = false;
+
+	Text scoreBoardText;
+
+	vector<float> scoreBoard;
+
+	float highScore = 0;
+
+	bool gameStarted = false;
+	bool takeScore = false;
 	
 public:
 	// The Engine constructor
@@ -127,4 +138,11 @@ public:
 	// Run will call all the private functions
 	void run();
 
+	void createNewSave();
+
+	bool loadSaveFile();
+
+	void updateSaveFile();
+
+	void addHighScore(float newScore);
 };

@@ -20,12 +20,7 @@ Hud::Hud()
 
 	// Position the text
 	FloatRect textRect = m_StartText.getLocalBounds();
-
-	m_StartText.setOrigin(textRect.left +
-		textRect.width / 2.0f,
-		textRect.top +
-		textRect.height / 2.0f);
-
+	m_StartText.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
 	m_StartText.setPosition(resolution.x / 2.0f, resolution.y / 2.0f);
 
 	// Time
@@ -41,6 +36,21 @@ Hud::Hud()
 	m_LevelText.setFillColor(Color::White);
 	m_LevelText.setPosition(25, 0);
 	m_LevelText.setString("1");
+
+	// Scoreboard
+	scoreBoardText.setFont(m_Font);
+	scoreBoardText.setCharacterSize(50);
+	scoreBoardText.setFillColor(Color::White);
+	scoreBoardText.setPosition(resolution.x / 2.0f - 100, resolution.y / 2.0f - 200);
+
+	// scoreboard heading
+	scoreBoardHeading.setFont(m_Font);
+	scoreBoardHeading.setCharacterSize(60);
+	scoreBoardHeading.setFillColor(Color::White);
+	scoreBoardHeading.setString("-- High Scores (seconds) --");
+	textRect = scoreBoardHeading.getLocalBounds();
+	scoreBoardHeading.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
+	scoreBoardHeading.setPosition(resolution.x / 2.0f, resolution.y / 2.0f - 250);
 }
 
 Text Hud::getMessage()
@@ -66,4 +76,19 @@ void Hud::setLevel(String text)
 void Hud::setTime(String text)
 {
 	m_TimeText.setString(text);
+}
+
+void Hud::setScoreboard(String text)
+{
+	scoreBoardText.setString(text);
+}
+
+Text Hud::getScoreboard()
+{
+	return scoreBoardText;
+}
+
+Text Hud::getScoreboardHeading()
+{
+	return scoreBoardHeading;
 }

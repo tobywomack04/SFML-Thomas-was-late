@@ -33,4 +33,11 @@ void Engine::loadLevel()
 
 	// Make sure this code isn't run again
 	m_NewLevelRequired = false;
+
+	if (gameStarted)
+	{
+		// Resume gameplay immediately after loading the level
+		m_Playing = true;
+	}
+	
 }

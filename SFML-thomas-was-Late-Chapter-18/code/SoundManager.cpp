@@ -4,8 +4,6 @@
 using namespace sf;
 using namespace std;
 
-using namespace sf;
-
 SoundManager::SoundManager()
 {
 	// Load the sound in to the buffers
@@ -14,6 +12,7 @@ SoundManager::SoundManager()
 	m_FallInWaterBuffer.loadFromFile("sound/fallinwater.wav");
 	m_JumpBuffer.loadFromFile("sound/jump.wav");
 	m_ReachGoalBuffer.loadFromFile("sound/reachgoal.wav");
+	m_HurtBuffer.loadFromFile("sound/hurt.wav");
 
 	// Associate the sounds with the buffers
 	m_Fire1Sound.setBuffer(m_FireBuffer);
@@ -23,6 +22,7 @@ SoundManager::SoundManager()
 	m_FallInWaterSound.setBuffer(m_FallInWaterBuffer);
 	m_JumpSound.setBuffer(m_JumpBuffer);
 	m_ReachGoalSound.setBuffer(m_ReachGoalBuffer);
+	m_HurtSound.setBuffer(m_HurtBuffer);
 
 	// When the player is 50 pixels away sound is full volume
 	float minDistance = 150;
@@ -39,13 +39,12 @@ SoundManager::SoundManager()
 	m_Fire2Sound.setMinDistance(minDistance);
 	m_Fire3Sound.setMinDistance(minDistance);
 
-	// Loop all the fire sounds
-	// when they are played
+	// Loop all the fire sounds when they are played
 	m_Fire1Sound.setLoop(true);
 	m_Fire2Sound.setLoop(true);
 	m_Fire3Sound.setLoop(true);
 
-	Listener::setGlobalVolume(50.f);
+	Listener::setGlobalVolume(10.f);
 }
 
 void SoundManager::playFire(Vector2f emitterLocation, Vector2f listenerLocation)
@@ -119,4 +118,10 @@ void SoundManager::playReachGoal()
 {
 	m_ReachGoalSound.setRelativeToListener(true);
 	m_ReachGoalSound.play();
+}
+
+void SoundManager::playHurt()
+{
+	m_HurtSound.setRelativeToListener(true);
+	m_HurtSound.play();
 }

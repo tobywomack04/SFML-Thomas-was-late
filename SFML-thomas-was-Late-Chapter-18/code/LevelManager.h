@@ -17,7 +17,7 @@ private:
 	int m_CurrentLevel = 0;
 	const int NUM_LEVELS = 4;
 
-	// A vector to store the enemies
+	// Vectors to store the enemies and powerups
 	vector<Enemy> m_Enemies;
 	vector<Powerup> m_Powerups;
 

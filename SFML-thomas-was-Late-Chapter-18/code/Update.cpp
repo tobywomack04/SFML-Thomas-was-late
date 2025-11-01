@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <sstream>
 #include <iostream>
+#include <iomanip>
 
 using namespace sf;
 using namespace std;
@@ -15,12 +16,27 @@ void Engine::update(float dtAsSeconds)
 
 		// Seed the random number generator
 		srand(time(NULL));
+		
+		if (m_LM.getCurrentLevel() == 1 && takeScore)
+		{
+			addHighScore(highScore);
+			updateSaveFile();
+			highScore = 0;
+			takeScore = false;
+		}
+		else if (m_LM.getCurrentLevel() == 4)
+		{
+			takeScore = true;
+		}
 	}
-
+	
 	if (m_Playing)
 	{
-		// Update Thomas
-		m_Thomas.update(dtAsSeconds);
+		if (!paused)
+		{
+			// Update Thomas
+			m_Thomas.update(dtAsSeconds);
+		}
 
 		/* Detect collisions and see if characters have reached the goal tile
 		The second part of the if condition is only executed when thomas is touching the home tile */
@@ -31,9 +47,19 @@ void Engine::update(float dtAsSeconds)
 
 			// Play the reach goal sound
 			m_SM.playReachGoal();
+
+			highScore += (m_LM.getTimeLimit() - m_TimeRemaining);
 		}
 
-		if (!m_Thomas.isTimeFrozen())
+		stringstream ss;
+		for (float score : scoreBoard)
+		{
+			ss << fixed << setprecision(5) << score << "\n";
+		}
+
+		m_Hud.setScoreboard(ss.str());
+
+		if (!m_Thomas.isTimeFrozen() && !paused)
 		{
 			// Count down the time the player has left
 			m_TimeRemaining -= dtAsSeconds;
@@ -79,7 +105,7 @@ void Engine::update(float dtAsSeconds)
 			}
 
 			// Update any bullets that are in-flight
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < 50; i++)
 			{
 				if (bullets[i].isInFlight())
 				{

@@ -10,7 +10,6 @@ void ParticleSystem::init(int numParticles)
 	m_Vertices.resize(numParticles);
 
 	// Create the particles
-
 	for (int i = 0; i < numParticles; i++)
 	{
 		srand(time(0) + i);
@@ -19,13 +18,10 @@ void ParticleSystem::init(int numParticles)
 
 		Vector2f direction;
 
-		direction = Vector2f(cos(angle) * speed,
-			sin(angle) * speed);
+		direction = Vector2f(cos(angle) * speed, sin(angle) * speed);
 
 		m_Particles.push_back(Particle(direction));
-
 	}
-
 }
 
 void ParticleSystem::update(float dt)
@@ -50,7 +46,6 @@ void ParticleSystem::update(float dt)
 	{
 		m_IsRunning = false;
 	}
-
 }
 
 void ParticleSystem::emitParticles(Vector2f startPosition)
@@ -63,17 +58,15 @@ void ParticleSystem::emitParticles(Vector2f startPosition)
 
 	for (i = m_Particles.begin(); i != m_Particles.end(); i++)
 	{
-		m_Vertices[currentVertex].color = Color::Yellow;
+		m_Vertices[currentVertex].color = Color::Red;
 		(*i).setPosition(startPosition);
 
 		currentVertex++;
 	}
-
 }
 
 void ParticleSystem::draw(RenderTarget& target, RenderStates states) const
 {
-	
 	target.draw(m_Vertices, states);
 }
 

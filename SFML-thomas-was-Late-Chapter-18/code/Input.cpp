@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include <iostream>
 
 using namespace sf;
 using namespace std;
@@ -17,15 +18,25 @@ void Engine::input()
 			}
 
 			// Handle the player starting the game
-			if (Keyboard::isKeyPressed(Keyboard::Return))
+			if (Keyboard::isKeyPressed(Keyboard::Return) && !m_Playing)
 			{
 				m_Playing = true;
+
+				createNewSave();
+
+				gameStarted = true;
 			}
 
-			// Switch between Thomas and Bob
-			if (Keyboard::isKeyPressed(Keyboard::Q))
+			if (Keyboard::isKeyPressed(Keyboard::Tab))
 			{
-				m_Character1 = !m_Character1;
+				if (!paused)
+				{
+					paused = true;
+				}
+				else
+				{
+					paused = false;
+				}
 			}
 		}
 	}	

@@ -36,20 +36,23 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 	FloatRect level(0, 0, m_LM.getLevelSize().x * TILE_SIZE, m_LM.getLevelSize().y * TILE_SIZE);
 	if (!character.getPosition().intersects(level))
 	{
-		// respawn the character
-		character.spawn(m_LM.getStartPosition(), GRAVITY);
-
-		for (int i = 0; i < 100; i++)
+		// Play the hurt sound
+		m_SM.playHurt();
+		
+		// Stop the bullets
+		for (int i = 0; i < 50; i++)
 		{
-			// Stop the bullets
 			bullets[i].stop();
 		}
 
+		// Reset enemy positions
 		for (int j = 0; j < m_Enemies.size(); j++)
 		{
-			// Reset enemy positions
 			m_Enemies[j].resetPosition();
 		}
+
+		// Respawn the character
+		character.spawn(m_LM.getStartPosition(), GRAVITY);
 	}
 
 	for (int i = 0; i < m_Enemies.size(); i++)
@@ -57,19 +60,23 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 		// Has Thomas run into an enemy?
 		if (m_Thomas.getPosition().intersects(m_Enemies[i].getPosition()))
 		{
-			character.spawn(m_LM.getStartPosition(), GRAVITY);
+			// Play the hurt sound
+			m_SM.playHurt();
 			
-			for (int i = 0; i < 100; i++)
+			// Stop the bullets
+			for (int i = 0; i < 50; i++)
 			{
-				// Stop the bullets
 				bullets[i].stop();
 			}
 
+			// Reset enemy positions
 			for (int j = 0; j < m_Enemies.size(); j++)
 			{
-				// Reset enemy positions
 				m_Enemies[j].resetPosition();
 			}
+
+			// Respawn the character
+			character.spawn(m_LM.getStartPosition(), GRAVITY);
 		}
 	}
 
@@ -97,25 +104,28 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 		}
 	}
 
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 50; i++)
 	{
 		// Has a bullet hit Thomas?
 		if (bullets[i].isInFlight() && bullets[i].getPosition().intersects(m_Thomas.getPosition()))
 		{
-			// Respawn Thomas
-			character.spawn(m_LM.getStartPosition(), GRAVITY);
+			// Play the hurt sound
+			m_SM.playHurt();
 
-			for (int i = 0; i < 100; i++)
+			// Stop the bullets
+			for (int i = 0; i < 50; i++)
 			{
-				// Stop the bullets
 				bullets[i].stop();
 			}
 
+			// Reset enemy positions
 			for (int j = 0; j < m_Enemies.size(); j++)
 			{
-				// Reset enemy positions
 				m_Enemies[j].resetPosition();
 			}
+
+			// Respawn the character
+			character.spawn(m_LM.getStartPosition(), GRAVITY);
 		}
 	}
 
@@ -123,7 +133,7 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 	{
 		for (int y = startY; y < endY; y++)
 		{
-			// Initialize the starting position of the current block
+			// Initialise the starting position of the current block
 			block.left = x * TILE_SIZE;
 			block.top = y * TILE_SIZE;
 
@@ -133,13 +143,11 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 			{
 				if (character.getHead().intersects(block))
 				{
-					character.spawn(m_LM.getStartPosition(), GRAVITY);
 					// Which sound should be played?
 					if (m_ArrayLevel[y][x] == 2)// Fire, ouch!
 					{
 						// Play a sound
 						m_SM.playFallInFire();
-
 					}
 					else // Water
 					{
@@ -147,25 +155,26 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 						m_SM.playFallInWater();
 					}
 
-					for (int i = 0; i < 100; i++)
+					// Stop the bullets
+					for (int i = 0; i < 50; i++)
 					{
-						// Stop the bullets
 						bullets[i].stop();
 					}
 
+					// Reset enemy positions
 					for (int j = 0; j < m_Enemies.size(); j++)
 					{
-						// Reset enemy positions
 						m_Enemies[j].resetPosition();
 					}
+
+					// Respawn the character
+					character.spawn(m_LM.getStartPosition(), GRAVITY);
 				}
 			}
-
 
 			// Is character colliding with a regular block
 			if (m_ArrayLevel[y][x] == 1)
 			{
-
 				if (character.getRight().intersects(block))
 				{
 					character.stopRight(block.left);
@@ -188,8 +197,7 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 			// More collision detection here once we have learned about particle effects
 			// Has the characters' feet touched fire or water?
 			// If so, start a particle effect
-			// Make sure this is the first time we have detected this
-			// by seeing if an effect is already running			
+			// Make sure this is the first time we have detected this by seeing if an effect is already running			
 			if (!m_PS.running()) {
 				if (m_ArrayLevel[y][x] == 2 || m_ArrayLevel[y][x] == 3)
 				{
@@ -197,7 +205,6 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 					{
 						// position and start the particle system
 						m_PS.emitParticles(character.getCenter());
-
 					}
 				}
 			}
@@ -207,6 +214,12 @@ bool Engine::detectCollisions(PlayableCharacter& character)
 			{
 				// Character has reached the goal
 				reachedGoal = true;
+
+				// Stop the bullets
+				for (int i = 0; i < 50; i++)
+				{
+					bullets[i].stop();
+				}
 			}
 		}
 	}

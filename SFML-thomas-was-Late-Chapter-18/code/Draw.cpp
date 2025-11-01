@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include <iostream>
 
 using namespace sf;
 using namespace std;
@@ -13,6 +14,7 @@ void Engine::draw()
 
 	// Switch to background view
 	m_Window.setView(m_BGMainView);
+
 	// Draw the background
 	m_Window.draw(m_BackgroundSprite);
 
@@ -38,7 +40,7 @@ void Engine::draw()
 		m_Window.draw(m_Powerups[i].getSprite());
 	}
 
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 50; i++)
 	{
 		if (bullets[i].isInFlight())
 		{
@@ -67,6 +69,12 @@ void Engine::draw()
 	if (!m_Playing)
 	{
 		m_Window.draw(m_Hud.getMessage());
+	}
+
+	if (paused)
+	{
+		m_Window.draw(m_Hud.getScoreboard());
+		m_Window.draw(m_Hud.getScoreboardHeading());
 	}
 	
 	// Show everything we have just drawn
